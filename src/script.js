@@ -23,6 +23,8 @@ function displayWeather(response) {
   document.querySelector("#current-temperature").innerHTML = Math.round(
     response.data.main.temp
   );
+  console.log(response.data);
+  document.querySelector("");
 }
 
 function searchCity(city) {
