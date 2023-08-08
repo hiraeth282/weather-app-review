@@ -47,7 +47,8 @@ a {
   font-size: 28px;
 }
 
-.precipitation, .wind-speed {
+.precipitation,
+.wind-speed {
   font-size: 18px;
 }
 
@@ -61,4 +62,8 @@ a {
 
 .forecast-day {
   font-size: 25px;
+}
+
+.footer {
+  text-align: center;
 }
