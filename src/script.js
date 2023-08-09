@@ -24,7 +24,8 @@ function displayWeather(response) {
     response.data.main.temp
   );
   console.log(response.data);
-  document.querySelector("");
+  document.querySelector("#condition").innerHTML =
+    response.data.weather[0].description;
 }
 
 function searchCity(city) {
@@ -80,3 +81,5 @@ celciusLink.addEventListener("click", convertToCelcius);
 
 let currentButton = document.querySelector("#current-location-button");
 currentButton.addEventListener("click", getCurrentLocation);
+
+searchCity("Tokyo");

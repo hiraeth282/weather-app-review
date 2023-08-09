@@ -38,6 +38,10 @@ a {
   font-size: 150px;
 }
 
+.condition::first-letter {
+  color: red;
+}
+
 .current-temp-display {
   text-align: right;
   font-size: 100px;
