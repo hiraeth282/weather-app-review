@@ -18,14 +18,34 @@ function formatDate(date) {
   return `${currentDay} ${currentHour}:${currentMinute}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Fri", "Sat", "Sun", "Mon", "Tues", "Wed"];
+  let forecastHTML = `<div style="text-align: center" class="row forecast-icons">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+          <i class="bi bi-brightness-high text forecast-icon"></i>
+          <p class="col text forecast-day">${day}</p>
+          <p class="forecast-temp text">10°| 22°</p>
+        </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayWeather(response) {
   document.querySelector("#current-city").innerHTML = response.data.name;
   document.querySelector("#current-temperature").innerHTML = Math.round(
     response.data.main.temp
   );
-  console.log(response.data);
+  let celciusTemperature = response.data.main.temp;
   document.querySelector("#condition").innerHTML =
     response.data.weather[0].description;
+  document.querySelector(
+    "#humidity"
+  ).innerHTML = `Humidity: ${response.data.main.humidity}%`;
 }
 
 function searchCity(city) {
@@ -40,10 +60,11 @@ function handleSearch(event) {
   searchCity(city);
 }
 
-function convertToFahrenheit(event) {
+function displayFahrenheitTemperature(event) {
   event.preventDefault();
   let currentTemperature = document.querySelector("#current-temperature");
-  currentTemperature.innerHTML = 65;
+  let fahrenheitTemperature = (celciusTemperature * 9) / 5 + 32;
+  currentTemperature.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 function convertToCelcius(event) {
@@ -66,6 +87,8 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(handleLocation);
 }
 
+let celciusTemperature = null;
+
 let dateElement = document.querySelector("#current-day-time");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
@@ -74,7 +97,7 @@ let searchForm = document.querySelector("form");
 searchForm.addEventListener("submit", handleSearch);
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", convertToFahrenheit);
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celciusLink = document.querySelector("#celcius-link");
 celciusLink.addEventListener("click", convertToCelcius);
@@ -83,3 +106,4 @@ let currentButton = document.querySelector("#current-location-button");
 currentButton.addEventListener("click", getCurrentLocation);
 
 searchCity("Tokyo");
+displayForecast();

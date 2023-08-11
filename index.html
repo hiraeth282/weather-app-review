@@ -69,12 +69,11 @@
                   id="current-day-time"
                 ></span>
                 <br />
-                <span id="condition" class="secondary text condition"></span>
+                <span id="condition" class="secondary text conditions"></span>
                 <br />
                 <br />
-                <span class="text precipitation"> Precipitation: 52% </span>
                 <br />
-                <span class="text humidity">Humidity: 10%</span>
+                <span id="humidity" class="text"></span>
               </div>
               <div class="col-4">
                 <i class="bi bi-moon-stars text current-display-icon"></i>
@@ -98,33 +97,7 @@
       </div>
       <div class="card forecast-card">
         <div class="card-body">
-          <div style="text-align: center" class="row forecast-icons">
-            <div class="col">
-              <i class="bi bi-brightness-high text forecast-icon"></i>
-              <p class="col text forecast-day">Tues</p>
-              <p class="forecast-temp text">10°| 22°</p>
-            </div>
-            <div class="col">
-              <i class="bi bi-cloud-drizzle text forecast-icon"></i>
-              <p class="col text forecast-day">Wed</p>
-              <p class="forecast-temp text">10°| 22°</p>
-            </div>
-            <div class="col">
-              <i class="bi bi-cloud-fog2 text forecast-icon"></i>
-              <p class="col text forecast-day">Thurs</p>
-              <p class="forecast-temp text">10°| 22°</p>
-            </div>
-            <div class="col">
-              <i class="bi bi-cloud-lightning-rain text forecast-icon"></i>
-              <p class="col text forecast-day">Fri</p>
-              <p class="forecast-temp text">10°| 22°</p>
-            </div>
-            <div class="col">
-              <i class="bi bi-snow text forecast-icon"></i>
-              <p class="col text forecast-day">Sat</p>
-              <p class="forecast-temp text">10°| 22°</p>
-            </div>
-          </div>
+          <div id="forecast"></div>
         </div>
       </div>
       <div class="footer">
