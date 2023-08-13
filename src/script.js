@@ -18,19 +18,29 @@ function formatDate(date) {
   return `${currentDay} ${currentHour}:${currentMinute}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data);
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-  let days = ["Fri", "Sat", "Sun", "Mon", "Tues", "Wed"];
   let forecastHTML = `<div style="text-align: center" class="row forecast-icons">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2">
-          <i class="bi bi-brightness-high text forecast-icon"></i>
-          <p class="col text forecast-day">${day}</p>
-          <p class="forecast-temp text">10°| 22°</p>
-        </div>`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2">
+            <p class="col text forecast-day">${formatDay(forecastDay.time)}</p>
+            <p class="forecast-temp text">${Math.round(
+              forecastDay.temperature.minimum
+            )}°| ${Math.round(forecastDay.temperature.maximum)}°</p>
+          </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
