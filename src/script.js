@@ -18,7 +18,8 @@ function formatDate(date) {
   return `${currentDay} ${currentHour}:${currentMinute}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
   let days = ["Fri", "Sat", "Sun", "Mon", "Tues", "Wed"];
   let forecastHTML = `<div style="text-align: center" class="row forecast-icons">`;
@@ -37,9 +38,9 @@ function displayForecast() {
 
 function getForecast(coordinates) {
   console.log(coordinates);
-  let apiKey = "ed238469f9b5e9d801834270e65449bc";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
+  let apiKey = "ef3b002ff573fa014c1eft26f3o5f207";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayWeather(response) {
@@ -115,4 +116,3 @@ let currentButton = document.querySelector("#current-location-button");
 currentButton.addEventListener("click", getCurrentLocation);
 
 searchCity("Tokyo");
-displayForecast();
